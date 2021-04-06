@@ -52,11 +52,11 @@
           </div>
 
           <div class="col">
-            <label for="sample_frequency_select">
+            <label for="order_select">
               Informe a ordem do modelo desejada
             </label>
-            <input type="number" class="form-control" id="sample_frequency_select" aria-describedby="time_window" placeholder="10" min="2" max="30" step="1">
-            <small id="freq_select" class="form-text text-muted">
+            <input type="number" class="form-control" id="order_select" aria-describedby="time_window" placeholder="10" min="2" max="30" step="1">
+            <small id="ord_select" class="form-text text-muted">
               Ordem do modelo máxima de 30.
             </small>
           </div>
