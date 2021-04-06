@@ -26,10 +26,7 @@
   <section id="about">
     <div class="container">
       <h1 class="mt-4">Sobre o projeto</h1>
-        <p>Este algoritmo realiza a coleta de dados da frequência da rede elétrica obtidos através de unidades μPMU instaladas na rede elétrica da universidade, e faz o cálculo da transformada de Fourier do sinal, com o objetivo de realizar a identificação de modos oscilatórios eletromecânicos presentes no sistema elétrico de potência.</p>
-        <!-- <button type="button" class="btn btn-primary btn-lg btn-block"> -->
-          <!-- <a href="R3LS-info.pdf" class="btn btn-outline-dark btn-lg btn-block" download>For more information about the project, download</a> -->
-        <!-- </button>   -->
+      <p>Este algoritmo realiza a coleta de dados da frequência da rede elétrica obtidos através de unidades μPMU instaladas na rede elétrica da universidade, e faz a estimação dos coeficientes do modelo ARMA utilizando como base as equações de Yule-Walker, com o objetivo de realizar a identificação de modos oscilatórios eletromecânicos presentes no sistema elétrico de potência.</p>
       <br />
       <br />
       <h2>Team</h2>
@@ -63,7 +60,7 @@
       </table>
       <br />
       <h2>Acknowledgements</h2>
-      <p>This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior  Brasil (CAPES)  Finance Code 001. This research was also partially supported by ANEEL’s R&D Program through COPEL’s PD 2866-0470-2017 project.</p>
+      <p>This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior Brasil (CAPES) Finance Code 001. This research was also partially supported by ANEEL’s R&D Program through COPEL’s PD 2866-0470-2017 project.</p>
     </div>
   </section>
 
