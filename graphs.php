@@ -8,26 +8,25 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 	$pmu = (isset($_GET['pmu']) && !empty($_GET['pmu']) ? $_GET['pmu'] : "");
 	$time_window = (isset($_GET['time_w']) && !empty($_GET['time_w']) ? $_GET['time_w'] : "");
 	$sample_frequency = (isset($_GET['sample_freq']) && !empty($_GET['sample_freq']) ? $_GET['sample_freq'] : "");
+	$order = (isset($_GET['order']) && !empty($_GET['order']) ? $_GET['order'] : "");
 	switch ($action) {
 		case 'startup':
-			startup($pmu, $time_window, $sample_frequency);
+			startup($pmu, $time_window, $sample_frequency, $order);
 			break;
 	}
 }
 
 // Main function, gets data from startup.py
 // TODO: Mudar o path e o interpreter do programa em python
-function startup($pmu, $time_w, $sample_freq)
+function startup($pmu, $time_w, $sample_freq, $order)
 {
 
 	// Execute the python script with the JSON data
 	// $results = shell_exec("/opt/ic-commp/bin/python3 /opt/ic-commp/ic-commp/startup.py $pmu $time_w $sample_freq");
 
-	$results = shell_exec("python C:/Users/alvar/Desktop/IC-COMMP/ic-commp/startup.py $pmu $time_w $sample_freq");
+	$results = shell_exec("python C:/Users/alvar/Desktop/IC-COMMP/ic-commp/startup.py $pmu $time_w $sample_freq $order");
 
 	$data_results = json_decode($results, true);
 
 	echo json_encode($data_results);
 }
-
-?>
