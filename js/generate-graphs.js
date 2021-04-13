@@ -11,6 +11,8 @@ let time_window = 60;
 let sample_frequency = 5;
 let order = 10;
 
+console.log("testing...");
+
 toggleViews('loading');
 
 $(document).ready(function () {
@@ -141,12 +143,12 @@ function draw_graph2(data_x, data_y) {
 	var trace = [];
 
 	layout = {
-		title: 'Transformada de Welch',
+		title: 'Modos eletromecânicos',
 		xaxis: {
-			title: 'Frequência [Hz]'
+			title: 'Amortecimento'
 		},
 		yaxis: {
-			title: 'Módulo'
+			title: 'Frequência [Hz]'
 		}
 	}
 
