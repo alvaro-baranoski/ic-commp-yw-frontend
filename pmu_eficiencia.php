@@ -100,8 +100,8 @@
   <script src="js/scrolling-nav.js"></script>
 
   <!-- Data processing algorithms -->
-  <!-- <script type="text/javascript" src="js/plotly-latest.min.js"></script>
-  <script type="text/javascript" src="js/graphs.js"></script> -->
+  <script type="text/javascript" src="js/plotly-latest.min.js"></script>
+  <script type="text/javascript" src="js/generate-graphs.js"></script>
 
 </body>
 
