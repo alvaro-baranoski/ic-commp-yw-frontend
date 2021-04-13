@@ -24,7 +24,7 @@ function startup($pmu, $time_w, $sample_freq, $order)
 	// Execute the python script with the JSON data
 	// $results = shell_exec("/opt/ic-commp/bin/python3 /opt/ic-commp/ic-commp/startup.py $pmu $time_w $sample_freq");
 
-	$results = shell_exec("python C:/Users/alvar/Desktop/IC-COMMP/ic-commp/startup.py $pmu $time_w $sample_freq $order");
+	$results = shell_exec("python C:/Users/alvar/Desktop/IC-COMMP/Yule-Walker/YW-backend/startup.py $pmu $time_w $sample_freq $order");
 
 	$data_results = json_decode($results, true);
 
