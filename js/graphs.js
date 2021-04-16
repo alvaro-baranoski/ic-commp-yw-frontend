@@ -11,6 +11,7 @@ let time_window = 60;
 let sample_frequency = 5;
 let order = 10;
 
+// Testing message
 console.log("testing...");
 
 toggleViews('loading');
