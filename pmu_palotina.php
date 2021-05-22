@@ -45,9 +45,9 @@
             <label for="sample_frequency_select">
               Informe a frequência desejada em hertz
             </label>
-            <input type="number" class="form-control" id="sample_frequency_select" aria-describedby="time_window" placeholder="5" min="1" max="20" step="1">
+            <input type="number" class="form-control" id="sample_frequency_select" aria-describedby="time_window" placeholder="15" min="15" max="20" step="1">
             <small id="freq_select" class="form-text text-muted">
-              Frequência de amostragem máxima de 20 Hz.
+              Frequência de amostragem entre 15 e 20 Hz.
             </small>
           </div>
 
@@ -55,9 +55,9 @@
             <label for="order_select">
               Informe a ordem do modelo desejada
             </label>
-            <input type="number" class="form-control" id="order_select" aria-describedby="time_window" placeholder="10" min="2" max="30" step="1">
+            <input type="number" class="form-control" id="order_select" aria-describedby="time_window" placeholder="20" min="10" max="30" step="1">
             <small id="ord_select" class="form-text text-muted">
-              Ordem do modelo máxima de 30.
+              Ordem do modelo entre 10 e 30.
             </small>
           </div>
 

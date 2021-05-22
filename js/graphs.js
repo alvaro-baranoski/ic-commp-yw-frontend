@@ -8,8 +8,8 @@ const modebar_config = {
 }
 
 let time_window = 60;
-let sample_frequency = 5;
-let order = 10;
+let sample_frequency = 15;
+let order = 20;
 
 // Testando
 console.log("testing...");
@@ -76,8 +76,8 @@ $('#button_id').on('click', function () {
 		order = parseInt($("#order_select").val());
 
 	if (5 <= time_window && time_window <= 60 &&
-		1 <= sample_frequency && sample_frequency <= 20 &&
-		2 <= order && order <= 30) {
+		15 <= sample_frequency && sample_frequency <= 20 &&
+		10 <= order && order <= 30) {
 
 		toggleViews('loading');
 
@@ -146,10 +146,10 @@ function draw_graph2(data_x, data_y) {
 	layout = {
 		title: 'Modos eletromecânicos',
 		xaxis: {
-			title: 'Frequência [Hz]'
+			title: 'Amortecimento [%]'
 		},
 		yaxis: {
-			title: 'Amortecimento [%]'
+			title: 'Frequência [Hz]'
 		}
 	}
 
