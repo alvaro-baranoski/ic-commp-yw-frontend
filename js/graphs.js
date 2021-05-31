@@ -146,10 +146,10 @@ function draw_graph2(data_x, data_y) {
 	layout = {
 		title: 'Modos eletromecânicos',
 		xaxis: {
-			title: 'Amortecimento [%]'
+			title: 'Frequência [Hz]'
 		},
 		yaxis: {
-			title: 'Frequência [Hz]'
+			title: 'Amortecimento [%]'
 		}
 	}
 
