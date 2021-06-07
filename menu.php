@@ -42,7 +42,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="about.php">Sobre o projeto</a>
+          <a class="nav-link js-scroll-trigger" href="about.php">About the project</a>
         </li>
       </ul>
     </div>
