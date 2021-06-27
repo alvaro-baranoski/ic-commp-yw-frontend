@@ -49,11 +49,11 @@
           </tr>
           <tr>
             <td>Prof. Dr. Eduardo Parente Ribeiro</td>
-            <td>edu@eletrica.ufpr.br</td>
+            <td>edu@ufpr.br</td>
           </tr>
           <tr>
             <td>Prof. Dr. Roman Kuiava</td>
-            <td>romankuiava@gmail.com</td>
+            <td>kuiava@ufpr.br</td>
           </tr>
           <tr>
             <td>Álvaro José Baranoski</td>
