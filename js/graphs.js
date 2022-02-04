@@ -10,27 +10,16 @@ const modebar_config = {
 let time_window = 60;
 let sample_frequency = 15;
 let order = 20;
+let view = 'simplificada';
 
 toggleViews('loading');
 
-$(document).ready(function () {
-
+window.addEventListener('load', () => {
 	// Page first load
 	startup();
-	// toggleViews('working');
 
 	// Refresh page every five minutes
-	window.setInterval(function () {
-		// toggleViews('loading');
-
-		setTimeout(function () {
-			startup();
-			// toggleViews('working');
-		},
-			2000);
-
-	},
-		300000);
+	window.setInterval(() => startup(), 300000);
 })
 
 
@@ -54,6 +43,7 @@ function startup() {
 		dataType: 'json',
 		async: true,
 		success: function (response) {
+			// Check de falha na requisição
 			if (response === null) {
 				toggleViews('unavailable');
 				return;
@@ -71,9 +61,6 @@ function startup() {
 				}));
 
 			toggleViews('working');
-		},
-		error: function() {
-			console.log('algo deu errado...');
 		}
 	});
 }
@@ -93,17 +80,14 @@ $('#button_id').on('click', function () {
 	if ($("#order_select").val() !== "")
 		order = parseInt($("#order_select").val());
 
+	document.getElementById('avancada').checked
+		? view = 'avancada'
+		: view = 'simplificada';
+
 	if (5 <= time_window && time_window <= 60 &&
 		15 <= sample_frequency && sample_frequency <= 20 &&
 		10 <= order && order <= 30) {
-
-		// toggleViews('loading');
-
-		setTimeout(function () {
-			startup();
-			// toggleViews('working');
-		},
-			2000);
+		startup();
 	}
 });
 

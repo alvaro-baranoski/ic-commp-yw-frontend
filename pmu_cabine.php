@@ -15,6 +15,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
 </head>
 
@@ -60,7 +61,33 @@
               Model order between 10 and 30.
             </small>
           </div>
+        </div>
 
+        <!-- Opção de mudança de dashboard -->
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="flexRadioDefault" 
+            id="simplificada"
+            checked>
+          <label 
+            class="form-check-label" 
+            for="simplificada">
+              Visualização simplificada
+          </label>
+        </div>
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="flexRadioDefault" 
+            id="avancada">
+          <label 
+            class="form-check-label" 
+            for="avancada">
+              Visualização avançada
+          </label>
         </div>
 
         <button type="button" id="button_id" class="btn btn-secondary" style="margin-top: 10px">
