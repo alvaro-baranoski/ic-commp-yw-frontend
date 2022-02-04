@@ -11,24 +11,21 @@ let time_window = 60;
 let sample_frequency = 15;
 let order = 20;
 
-// Testando
-console.log("testing...");
-
 toggleViews('loading');
 
 $(document).ready(function () {
 
 	// Page first load
 	startup();
-	toggleViews('working');
+	// toggleViews('working');
 
 	// Refresh page every five minutes
 	window.setInterval(function () {
-		toggleViews('loading');
+		// toggleViews('loading');
 
 		setTimeout(function () {
 			startup();
-			toggleViews('working');
+			// toggleViews('working');
 		},
 			2000);
 
@@ -39,13 +36,29 @@ $(document).ready(function () {
 
 // This function works at page change
 function startup() {
+
+	toggleViews('loading');
+
+	const params = {
+		action: 'startup', 
+		pmu: $("#select-pmu").text(),
+		time_w: time_window,
+		sample_freq: sample_frequency,
+		order: order
+	};
+
 	$.ajax({
 		url: 'graphs.php',
-		data: { action: 'startup', pmu: $("#select-pmu").text(), time_w: time_window, sample_freq: sample_frequency, order: order },
+		data: params,
 		method: 'GET',
 		dataType: 'json',
-		async: false,
+		async: true,
 		success: function (response) {
+			if (response === null) {
+				toggleViews('unavailable');
+				return;
+			}
+
 			draw_graph1(response.date, response.freq);
 			draw_graph2(response.welch_freq, response.welch);
 
@@ -56,6 +69,11 @@ function startup() {
 					minute: "numeric",
 					second: "numeric"
 				}));
+
+			toggleViews('working');
+		},
+		error: function() {
+			console.log('algo deu errado...');
 		}
 	});
 }
@@ -79,11 +97,11 @@ $('#button_id').on('click', function () {
 		15 <= sample_frequency && sample_frequency <= 20 &&
 		10 <= order && order <= 30) {
 
-		toggleViews('loading');
+		// toggleViews('loading');
 
 		setTimeout(function () {
 			startup();
-			toggleViews('working');
+			// toggleViews('working');
 		},
 			2000);
 	}
@@ -91,6 +109,7 @@ $('#button_id').on('click', function () {
 
 // Utility function for switching between page views
 function toggleViews(status) {
+	console.log(status);
 	switch (status) {
 		case 'working':
 			$("#graph1").show();
@@ -98,6 +117,7 @@ function toggleViews(status) {
 			$("#loading").hide();
 			$("#last-update").show();
 			$('#pmu-location').show();
+			$('#pmu-error').hide();
 			break;
 
 		case 'unavailable':
@@ -106,6 +126,7 @@ function toggleViews(status) {
 			$("#loading").hide();
 			$("#last-update").hide();
 			$('#pmu-location').show();
+			$('#pmu-error').show();
 			break;
 
 		case 'loading':
@@ -114,6 +135,7 @@ function toggleViews(status) {
 			$("#loading").show();
 			$("#last-update").hide();
 			$('#pmu-location').hide();
+			$('#pmu-error').hide();
 			break;
 	}
 }

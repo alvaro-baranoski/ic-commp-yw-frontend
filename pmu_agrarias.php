@@ -85,6 +85,20 @@
       <h1><b>LOADING...</b></h1>
       </p>
     </div>
+
+    <!-- Mensagem de erro -->
+    <div id="pmu-error" class="container pb-5 pt-5 w-75">
+      <div class="row d-flex">
+          <div class="col">
+            <img src="svg/switch-off.svg" width="400px">
+          </div>
+          <div class="col" style="margin: auto">
+            <p>
+            <h3><b>We're very sorry, but the requested PMU is currently offline.</b></h3>
+            </p>
+          </div>
+      </div>
+    </div>
   </section>
 
   <div class="text-center pb-5" id="pmu-location">
