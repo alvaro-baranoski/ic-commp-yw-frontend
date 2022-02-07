@@ -9,23 +9,24 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 	$time_window = (isset($_GET['time_w']) && !empty($_GET['time_w']) ? $_GET['time_w'] : "");
 	$sample_frequency = (isset($_GET['sample_freq']) && !empty($_GET['sample_freq']) ? $_GET['sample_freq'] : "");
 	$order = (isset($_GET['order']) && !empty($_GET['order']) ? $_GET['order'] : "");
-	$view = $_GET['view'];
 	switch ($action) {
 		case 'startup':
-			startup($pmu, $time_window, $sample_frequency, $order, $view);
+			startup($pmu, $time_window, $sample_frequency, $order);
 			break;
 	}
 }
 
 // Main function, gets data from startup.py
 // TODO: Mudar o path e o interpreter do programa em python
-function startup($pmu, $time_w, $sample_freq, $order, $view)
+function startup($pmu, $time_w, $sample_freq, $order)
 {
 
 	// Execute the python script with the JSON data
-	$results = shell_exec("/opt/ic-commp/bin/python3 /opt/yulewalker/startup.py $pmu $time_w $sample_freq $order $view");
+	$results = shell_exec("/opt/ic-commp/bin/python3 /opt/yulewalker/startup.py $pmu $time_w $sample_freq $order");
 
-	// $results = shell_exec("D:/Alvaro/Faculdade/2021-2/TCC/Source/ic-commp-yw-backend/venv/Scripts/python.exe D:/Alvaro/Faculdade/2021-2/TCC/Source/ic-commp-yw-backend//startup.py $pmu $time_w $sample_freq $order $view");
+	// $results = shell_exec("python C:/Users/alvar/Desktop/IC-COMMP/Yule-Walker/YW-backend/startup.py $pmu $time_w $sample_freq $order");
 
-	echo json_encode($results);
+	$data_results = json_decode($results, true);
+
+	echo json_encode($data_results);
 }

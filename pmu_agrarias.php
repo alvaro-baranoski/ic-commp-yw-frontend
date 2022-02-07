@@ -96,7 +96,6 @@
 
       <!-- Gráficos -->
       <div class="row" id="graph1" style="width: 1140px;"></div>
-      <div class="row" id="graph_processed" style="width: 1140px;"></div>
       <div class="row" id="graph2" style="width: 1140px;"></div>
 
       <!-- Tempo de atualização -->
