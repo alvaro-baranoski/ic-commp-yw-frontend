@@ -33,7 +33,8 @@ function startup() {
 		pmu: $("#select-pmu").text(),
 		time_w: time_window,
 		sample_freq: sample_frequency,
-		order: order
+		order: order,
+		view: view
 	};
 
 	$.ajax({
@@ -48,9 +49,14 @@ function startup() {
 				toggleViews('unavailable');
 				return;
 			}
+			
+			const res = JSON.parse(response);
+			
+			draw_graph1(res.date, res.freq);
+			draw_graph2(res.modes, res.damp);
 
-			draw_graph1(response.date, response.freq);
-			draw_graph2(response.welch_freq, response.welch);
+			if (res.freq_process)
+				draw_graph_processed(res.freq_process);
 
 			//Updates time and informs user
 			$("#last-update-time").html(new Date().toLocaleDateString() + " " +
@@ -93,11 +99,11 @@ $('#button_id').on('click', function () {
 
 // Utility function for switching between page views
 function toggleViews(status) {
-	console.log(status);
 	switch (status) {
 		case 'working':
 			$("#graph1").show();
 			$("#graph2").show();
+			$("#graph_processed").show();
 			$("#loading").hide();
 			$("#last-update").show();
 			$('#pmu-location').show();
@@ -107,6 +113,7 @@ function toggleViews(status) {
 		case 'unavailable':
 			$("#graph1").hide();
 			$("#graph2").hide();
+			$("#graph_processed").hide();
 			$("#loading").hide();
 			$("#last-update").hide();
 			$('#pmu-location').show();
@@ -116,6 +123,7 @@ function toggleViews(status) {
 		case 'loading':
 			$("#graph1").hide();
 			$("#graph2").hide();
+			$("#graph_processed").hide();
 			$("#loading").show();
 			$("#last-update").hide();
 			$('#pmu-location').hide();
@@ -170,4 +178,27 @@ function draw_graph2(data_x, data_y) {
 	})
 
 	Plotly.newPlot('graph2', trace, layout, modebar_config);
+}
+
+function draw_graph_processed(data_y) {
+	var layout;
+	var trace = [];
+
+	layout = {
+		title: 'Preprocessed frequency',
+		xaxis: {
+			title: 'Number of samples'
+		},
+		yaxis: {
+			title: 'Frequency [Hz]'
+		}
+	}
+
+	trace.push({
+		y: data_y,
+		mode: 'lines',
+		type: 'scatter'
+	})
+
+	Plotly.newPlot('graph_processed', trace, layout, modebar_config);
 }
