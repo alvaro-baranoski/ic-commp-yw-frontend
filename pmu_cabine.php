@@ -15,7 +15,9 @@
 
   <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+
+    <!-- Toggle button CSS -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
 </head>
 
@@ -32,7 +34,24 @@
     <div class="container">
       <h4> Measurement Unit: Elétrica </h4>
 
-      <form>
+      <!-- Dashboard view selection button -->
+      <div id="dashboard-select-div">
+        <input
+          id="dashboard-select-checkbox"
+          type="checkbox" 
+          checked 
+          data-toggle="toggle"
+          data-on="Simplified Dashboard"
+          data-off="Complete Dashboard"
+          data-onstyle="primary"
+          data-offstyle="secondary"
+          data-width="1140" 
+          data-height="60">
+      </div>
+
+      <form
+        id="page-form" 
+        class="d-none">
         <div class="form-row">
           <div class="col">
             <label for="time_window_select">Time window in minutes</label>
@@ -62,43 +81,15 @@
             </small>
           </div>
         </div>
-
-        <!-- Opção de mudança de dashboard -->
-        <div class="form-check mt-2">
-          <input 
-            class="form-check-input" 
-            type="radio" 
-            name="flexRadioDefault" 
-            id="simplificada"
-            checked>
-          <label 
-            class="form-check-label" 
-            for="simplificada">
-              Visualização simplificada
-          </label>
-        </div>
-        <div class="form-check">
-          <input 
-            class="form-check-input" 
-            type="radio" 
-            name="flexRadioDefault" 
-            id="avancada">
-          <label 
-            class="form-check-label" 
-            for="avancada">
-              Visualização avançada
-          </label>
-        </div>
-
-        <button type="button" id="button_id" class="btn btn-secondary" style="margin-top: 10px">
-          Update
-        </button>
       </form>
+      <button type="button" id="button_id" class="btn btn-secondary" style="margin-top: 10px">
+        Update
+      </button>
 
       <!-- Gráficos -->
-      <div class="row" id="graph1" style="width: 1140px;"></div>
-      <div class="row" id="graph_processed" style="width: 1140px;"></div>
-      <div class="row" id="graph2" style="width: 1140px;"></div>
+      <div class="row d-none" id="graph1" style="width: 1140px;"></div>
+      <div class="row d-none" id="graph_processed" style="width: 1140px;"></div>
+      <div class="row d-none" id="graph2" style="width: 1140px;"></div>
 
       <!-- Tempo de atualização -->
       <div class="row justify-content-center" id="last-update" style="display:none">
@@ -107,7 +98,7 @@
     </div>
 
     <!-- Logo de loading -->
-    <div id="loading" style="text-align: center; display: none">
+    <div id="loading" style="text-align: center;">
       <img src="svg/loading-big.gif" width="400px">
       <p align="center">
       <h1><b>LOADING...</b></h1>
@@ -115,7 +106,7 @@
     </div>
 
     <!-- Mensagem de erro -->
-    <div id="pmu-error" class="container pb-5 pt-5 w-75">
+    <div id="pmu-error" class="container pb-5 pt-5 w-75 d-none">
       <div class="row d-flex">
           <div class="col">
             <img src="svg/switch-off.svg" width="400px">
@@ -129,7 +120,8 @@
     </div>
   </section>
 
-  <div class="text-center pb-5" id="pmu-location">
+  <!-- PMU location -->
+  <div class="text-center pb-5 d-none" id="pmu-location">
     <h5 class="pt-4">PMU geographical location</h5>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d900.6527585227743!2d-49.23439171191856!3d-25.45126449898119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDI3JzA0LjYiUyA0OcKwMTQnMDEuOCJX!5e0!3m2!1spt-BR!2sbr!4v1623191654981!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
@@ -145,6 +137,9 @@
 
   <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
+
+  <!-- Toggle button script -->
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
   <!-- Data processing algorithms -->
   <script type="text/javascript" src="js/plotly-latest.min.js"></script>

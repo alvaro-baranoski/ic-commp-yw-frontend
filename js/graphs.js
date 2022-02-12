@@ -55,8 +55,13 @@ function startup() {
 			draw_graph1(res.date, res.freq);
 			draw_graph2(res.modes, res.damp);
 
-			if (res.freq_process)
+			// Preprocessed signal graph logic
+			if (res.freq_process) {
 				draw_graph_processed(res.freq_process);
+				toggleViews('working-complete');
+			} else {
+				toggleViews('working');
+			}
 
 			//Updates time and informs user
 			$("#last-update-time").html(new Date().toLocaleDateString() + " " +
@@ -65,11 +70,25 @@ function startup() {
 					minute: "numeric",
 					second: "numeric"
 				}));
-
-			toggleViews('working');
 		}
 	});
 }
+
+// Dashboard view selection button click
+$('#dashboard-select-div').on('click', () => {
+	const checkbox = document.getElementById('dashboard-select-checkbox');
+	const form = document.getElementById('page-form');
+	// Complete dashboard
+	if (checkbox.checked) {
+		form.classList.remove('d-none');
+		view = 'complete';
+	} 
+	// Simplified dashboard
+	else {
+		form.classList.add('d-none');
+		view = 'simplified';
+	}
+})
 
 // Function that activates at button click
 $('#button_id').on('click', function () {
@@ -86,10 +105,6 @@ $('#button_id').on('click', function () {
 	if ($("#order_select").val() !== "")
 		order = parseInt($("#order_select").val());
 
-	document.getElementById('avancada').checked
-		? view = 'avancada'
-		: view = 'simplificada';
-
 	if (5 <= time_window && time_window <= 60 &&
 		15 <= sample_frequency && sample_frequency <= 20 &&
 		10 <= order && order <= 30) {
@@ -101,33 +116,43 @@ $('#button_id').on('click', function () {
 function toggleViews(status) {
 	switch (status) {
 		case 'working':
-			$("#graph1").show();
-			$("#graph2").show();
-			$("#graph_processed").show();
-			$("#loading").hide();
-			$("#last-update").show();
-			$('#pmu-location').show();
-			$('#pmu-error').hide();
+			show('graph1');
+			show('graph2');
+			hide('graph_processed');
+			hide('loading');
+			show('last-update');
+			show('pmu-location');
+			hide('pmu-error');
+			break;
+
+		case 'working-complete':
+			show('graph1');
+			show('graph2');
+			show('graph_processed');
+			hide('loading');
+			show('last-update');
+			show('pmu-location');
+			hide('pmu-error');
 			break;
 
 		case 'unavailable':
-			$("#graph1").hide();
-			$("#graph2").hide();
-			$("#graph_processed").hide();
-			$("#loading").hide();
-			$("#last-update").hide();
-			$('#pmu-location').show();
-			$('#pmu-error').show();
+			hide('graph1');
+			hide('graph2');
+			hide('graph_processed');
+			hide('loading');
+			hide('last-update');
+			show('pmu-location');
+			show('pmu-error');
 			break;
 
 		case 'loading':
-			$("#graph1").hide();
-			$("#graph2").hide();
-			$("#graph_processed").hide();
-			$("#loading").show();
-			$("#last-update").hide();
-			$('#pmu-location').hide();
-			$('#pmu-error').hide();
+			hide('graph1');
+			hide('graph2');
+			hide('graph_processed');
+			show('loading');
+			hide('last-update');
+			hide('pmu-location');
+			hide('pmu-error');
 			break;
 	}
 }
@@ -201,4 +226,21 @@ function draw_graph_processed(data_y) {
 	})
 
 	Plotly.newPlot('graph_processed', trace, layout, modebar_config);
+}
+
+// DOM Manipulation functions
+function show(elementId) {
+	const element = document.getElementById(elementId);
+	if (!element) return;
+	if (element.classList.contains('d-none')) {
+		element.classList.remove('d-none');
+	}
+}
+
+function hide(elementId) {
+	const element = document.getElementById(elementId);
+	if (!element) return;
+	if (!element.classList.contains('d-none')) {
+		element.classList.add('d-none');
+	}
 }
