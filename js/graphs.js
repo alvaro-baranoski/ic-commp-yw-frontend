@@ -10,6 +10,9 @@ const modebar_config = {
 let time_window = 60;
 let sample_frequency = 15;
 let order = 20;
+let filterLower = 0.3;
+let filterHigher = 7.0;
+let outlierConstant = 3.5;
 let view = 'simplificada';
 
 toggleViews('loading');
@@ -34,6 +37,9 @@ function startup() {
 		time_w: time_window,
 		sample_freq: sample_frequency,
 		order: order,
+		filter_lower: filterLower,
+		filter_higher: filterHigher,
+		outlier_constant: outlierConstant,
 		view: view
 	};
 
@@ -90,7 +96,7 @@ $('#dashboard-select-div').on('click', () => {
 	}
 })
 
-// Function that activates at button click
+// Update button click
 $('#button_id').on('click', function () {
 
 	// Checks time window value
@@ -105,8 +111,20 @@ $('#button_id').on('click', function () {
 	if ($("#order_select").val() !== "")
 		order = parseInt($("#order_select").val());
 
+	// filter lower frequency
+	if ($("#filter_lower_select").val() !== "") 
+		filterLower = parseFloat($("#filter_lower_select").val());
+
+	// filter higher frequency
+	if ($("#filter_higher_select").val() !== "")
+		filterHigher = parseFloat($("#filter_higher_select").val());
+
+	// filter lower frequency
+	if ($("#outliner_select").val() !== "")
+		outlierConstant = parseFloat($("#outliner_select").val());
+
 	if (5 <= time_window && time_window <= 60 &&
-		15 <= sample_frequency && sample_frequency <= 20 &&
+		15 <= sample_frequency && sample_frequency <= 30 &&
 		10 <= order && order <= 30) {
 		startup();
 	}

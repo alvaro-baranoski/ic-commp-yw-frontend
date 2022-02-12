@@ -52,7 +52,10 @@
       <form
         id="page-form" 
         class="d-none">
-        <div class="form-row">
+
+        <div class="form-row mt-3">
+
+          <!-- Time window -->
           <div class="col">
             <label for="time_window_select">Time window in minutes</label>
             <input type="number" class="form-control" id="time_window_select" aria-describedby="time_window" placeholder="60" min="1" max="60" step="1">
@@ -61,16 +64,18 @@
             </small>
           </div>
 
+          <!-- Sample frequency -->
           <div class="col">
             <label for="sample_frequency_select">
               Sample frequency in hertz
             </label>
             <input type="number" class="form-control" id="sample_frequency_select" aria-describedby="time_window" placeholder="15" min="15" max="20" step="1">
             <small id="freq_select" class="form-text text-muted">
-              Sample frequency between 15 and 20 Hz.
+              Sample frequency between 15 and 30 Hz.
             </small>
           </div>
 
+          <!-- Model order -->
           <div class="col">
             <label for="order_select">
               Model order
@@ -81,6 +86,62 @@
             </small>
           </div>
         </div>
+
+        <div class="form-row mt-3">
+
+          <!-- Filter lower bandwith -->
+          <div class="col">
+            <label for="filter_lower_select">
+              Filter lower bandwidth in hertz
+            </label>
+            <input 
+              type="number" 
+              class="form-control" 
+              id="filter_lower_select" 
+              placeholder="0.3" 
+              min="0"  
+              step="0.1">
+            <small class="form-text text-muted">
+              Default value is 0.3 Hz.
+            </small>
+          </div>
+
+          <!-- Filter higher bandwidth -->
+          <div class="col">
+            <label for="filter_higher_select">
+              Filter higher bandwidth in hertz
+            </label>
+            <input 
+              type="number" 
+              class="form-control" 
+              id="filter_higher_select" 
+              aria-describedby="time_window" 
+              placeholder="7.0" 
+              min="0" 
+              step="0.1">
+            <small class="form-text text-muted">
+              Default value is 7.0 Hz.
+            </small>
+          </div>
+
+          <!-- Outliner sensibility -->
+          <div class="col">
+            <label for="order_select">
+              Outliner detection constant
+            </label>
+            <input 
+              type="number" 
+              class="form-control" 
+              id="outliner_select"  
+              placeholder="3.5" 
+              min="0"  
+              step="0.1">
+            <small class="form-text text-muted">
+              Value multiplied by standard deviation to find outliers.
+            </small>
+          </div>
+        </div>
+
       </form>
       <button type="button" id="button_id" class="btn btn-secondary" style="margin-top: 10px">
         Update
