@@ -63,7 +63,7 @@ function startup() {
 
 			// Preprocessed signal graph logic
 			if (res.freq_process) {
-				draw_graph_processed(res.freq_process);
+				draw_graph_processed(res.date, res.freq_process);
 				toggleViews('working-complete');
 			} else {
 				toggleViews('working');
@@ -223,14 +223,14 @@ function draw_graph2(data_x, data_y) {
 	Plotly.newPlot('graph2', trace, layout, modebar_config);
 }
 
-function draw_graph_processed(data_y) {
+function draw_graph_processed(data_x, data_y) {
 	var layout;
 	var trace = [];
 
 	layout = {
 		title: 'Preprocessed frequency',
 		xaxis: {
-			title: 'Number of samples'
+			title: 'Time'
 		},
 		yaxis: {
 			title: 'Frequency [Hz]'
@@ -238,6 +238,7 @@ function draw_graph_processed(data_y) {
 	}
 
 	trace.push({
+		x: data_x,
 		y: data_y,
 		mode: 'lines',
 		type: 'scatter'
