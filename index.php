@@ -44,8 +44,13 @@
         <option value="about.php" disabled>Copel</option>
       </select>
 
-      <h5 class="mt-4">Other methods available: </h5>
+      
+      <h5 class="mt-2">Other methods available: </h5>
       <a class="btn btn-secondary" href="https://sirius.eletrica.ufpr.br/welch/index.php" target="_blank" role="button">Welch</a>
+      
+      <div id="number-access-div" class="d-none mt-2">
+        <p>This website has received <span id="number-access"></span> visitors so far!</p>
+      </div>
   </section>
 
   <?php include('footer.php'); ?>
@@ -59,6 +64,11 @@
 
   <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
+
+  <script async src="https://api.countapi.xyz/hit/sirius.eletrica.ufpr.br/yulewalker?callback=cb"></script>
+
+  <!-- Main code for this page -->
+  <script type="text/javascript" src="js/index.js"></script>
 
 </body>
 
