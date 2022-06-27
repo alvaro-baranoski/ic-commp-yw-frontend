@@ -7,12 +7,13 @@ const modebar_config = {
 		'toggleSpikelines']
 }
 
-let time_window = 60;
-let sample_frequency = 15;
+// Default values
+let time_window = 20;
+let sample_frequency = 100;
 let order = 20;
-let filterLower = 0.3;
-let filterHigher = 7.0;
-let outlierConstant = 3.5;
+let filterLower = 0.04;
+let filterHigher = 4.0;
+let outlierConstant = 5;
 let view = 'simplificada';
 
 toggleViews('loading');
@@ -123,11 +124,8 @@ $('#button_id').on('click', function () {
 	if ($("#outliner_select").val() !== "")
 		outlierConstant = parseFloat($("#outliner_select").val());
 
-	if (5 <= time_window && time_window <= 60 &&
-		15 <= sample_frequency && sample_frequency <= 30 &&
-		10 <= order && order <= 30) {
-		startup();
-	}
+	startup();
+	
 });
 
 // Utility function for switching between page views
