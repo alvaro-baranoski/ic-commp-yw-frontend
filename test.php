@@ -1,6 +1,6 @@
 <?php
 
-$res = file_get_contents("https://sirius.eletrica.ufpr.br/yulewalker/graphs.php?action=startup&pmu=cabine&time_w=60&sample_freq=15&order=20&filter_lower=0.3&filter_higher=7&outlier_constant=3.5&view=simplificada");
+$res = file_get_contents("https://sirius.eletrica.ufpr.br/yulewalker/graphs.php?action=startup&pmu=palotina&time_w=20&sample_freq=100&order=20&filter_lower=0.04&filter_higher=4&outlier_constant=5&view=simplificada");
 
 print_r($res);
 
