@@ -47,6 +47,8 @@ function startup($pmu, $time_w, $sample_freq, $order, $filter_lower, $filter_hig
 	// Execute the python script with the JSON data
 	$results = shell_exec("/opt/ic-commp/bin/python3 /opt/yulewalker/main/startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
 
+	print($results);
+
 	// $results = shell_exec("D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\\venv\Scripts\python.exe D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\main\startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
 
 	echo json_encode($results);
