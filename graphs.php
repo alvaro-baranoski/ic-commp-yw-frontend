@@ -35,26 +35,35 @@ function startup($pmu, $time_w, $sample_freq, $order, $filter_lower, $filter_hig
 {
 
 	print_r("executando função de startup \n");
-	print_r($pmu + "\n");
-	print_r($time_w + "\n");
-	print_r($sample_freq + "\n");
-	print_r($order + "\n");
-	print_r($filter_lower + "\n");
-	print_r($filter_higher + "\n");
-	print_r($outlier_constant + "\n");
-	print_r($view + "\n");
+	print_r($pmu);
+	print_r("\n");
+	print_r($time_w);
+	print_r("\n");
+	print_r($sample_freq);
+	print_r("\n");
+	print_r($order);
+	print_r("\n");
+	print_r($filter_lower);
+	print_r("\n");
+	print_r($filter_higher);
+	print_r("\n");
+	print_r($outlier_constant);
+	print_r("\n");
+	print_r($view);
+	print_r("\n");
 
 	// Execute the python script with the JSON data
 	$results = shell_exec("/opt/ic-commp/bin/python3 /opt/yulewalker/main/startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
+	// $results = shell_exec("D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\\venv\Scripts\python.exe D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\main\startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
 
-	print_r("imprimindo resultado do comando: ");
+	print_r("imprimindo resultado do comando: \n");
 
 	print_r($results);
 	print_r("\n");
 
-	// $results = shell_exec("D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\\venv\Scripts\python.exe D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\main\startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
 
 	// echo json_encode($results);
 
 	print_r("finished");
+	print_r("\n");
 }
