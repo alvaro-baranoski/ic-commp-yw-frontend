@@ -58,7 +58,18 @@ function startup($pmu, $time_w, $sample_freq, $order, $filter_lower, $filter_hig
 
 	print_r("imprimindo resultado do comando: \n");
 
-	print_r($results);
+	sleep(2);
+
+	print_r(gettype($results));
+	print_r("\n");
+
+	$encoded_results = json_encode($results);
+
+	print_r("imprimindo resultado do encode: \n");
+
+	sleep(2);
+
+	print_r($encoded_results);
 	print_r("\n");
 
 
