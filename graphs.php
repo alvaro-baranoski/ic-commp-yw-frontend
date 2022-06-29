@@ -34,47 +34,42 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 function startup($pmu, $time_w, $sample_freq, $order, $filter_lower, $filter_higher, $outlier_constant, $view)
 {
 
-	print_r("executando função de startup \n");
-	print_r($pmu);
-	print_r("\n");
-	print_r($time_w);
-	print_r("\n");
-	print_r($sample_freq);
-	print_r("\n");
-	print_r($order);
-	print_r("\n");
-	print_r($filter_lower);
-	print_r("\n");
-	print_r($filter_higher);
-	print_r("\n");
-	print_r($outlier_constant);
-	print_r("\n");
-	print_r($view);
-	print_r("\n");
+	// print_r("executando função de startup \n");
+	// print_r($pmu);
+	// print_r("\n");
+	// print_r($time_w);
+	// print_r("\n");
+	// print_r($sample_freq);
+	// print_r("\n");
+	// print_r($order);
+	// print_r("\n");
+	// print_r($filter_lower);
+	// print_r("\n");
+	// print_r($filter_higher);
+	// print_r("\n");
+	// print_r($outlier_constant);
+	// print_r("\n");
+	// print_r($view);
+	// print_r("\n");
 
 	// Execute the python script with the JSON data
-	$results = shell_exec("/opt/ic-commp/bin/python3 /opt/yulewalker/main/startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
-	// $results = shell_exec("D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\\venv\Scripts\python.exe D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\main\startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
+	// $results = shell_exec("/opt/ic-commp/bin/python3 /opt/yulewalker/main/startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
+	$results = shell_exec("D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\\venv\Scripts\python.exe D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\main\startup.py $pmu $time_w $sample_freq $order $filter_lower $filter_higher $outlier_constant $view");
 
-	print_r("imprimindo resultado do comando: \n");
-
-	sleep(2);
-
-	print_r(gettype($results));
-	print_r("\n");
+	// print_r("imprimindo resultado do comando: \n");
+	// sleep(2);
+	// print_r(gettype($results));
+	// print_r("\n");
 
 	$encoded_results = json_encode($results);
 
-	print_r("imprimindo resultado do encode: \n");
+	// print_r("imprimindo resultado do encode: \n");
+	// sleep(2);
+	// print_r($encoded_results);
+	// print_r("\n");
 
-	sleep(2);
+	echo $encoded_results;
 
-	print_r($encoded_results);
-	print_r("\n");
-
-
-	// echo json_encode($results);
-
-	print_r("finished");
-	print_r("\n");
+	// print_r("finished");
+	// print_r("\n");
 }
