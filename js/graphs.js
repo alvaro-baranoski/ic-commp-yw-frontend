@@ -77,6 +77,8 @@ function startup() {
 					res.c_not_stab_fn,
 					res.c_not_stab_mn
 				);
+				// Plot de diagrama de estabilização 3d
+				draw_3d_diagram(res.d3_freq, res.d3_damp);
 				toggleViews('working-complete');
 			} else {
 				toggleViews('working');
@@ -148,6 +150,7 @@ function toggleViews(status) {
 			show('graph2');
 			hide('graph_processed');
 			hide('graph_conv_stab');
+			hide('graph_3d_stab');
 			hide('loading');
 			show('last-update');
 			show('pmu-location');
@@ -159,6 +162,7 @@ function toggleViews(status) {
 			show('graph2');
 			show('graph_processed');
 			show('graph_conv_stab');
+			show('graph_3d_stab');
 			hide('loading');
 			show('last-update');
 			show('pmu-location');
@@ -170,6 +174,7 @@ function toggleViews(status) {
 			hide('graph2');
 			hide('graph_processed');
 			hide('graph_conv_stab');
+			hide('graph_3d_stab');
 			hide('loading');
 			hide('last-update');
 			show('pmu-location');
@@ -181,6 +186,7 @@ function toggleViews(status) {
 			hide('graph2');
 			hide('graph_processed');
 			hide('graph_conv_stab');
+			hide('graph_3d_stab');
 			show('loading');
 			hide('last-update');
 			hide('pmu-location');
@@ -328,6 +334,38 @@ function draw_stabilization_diagram(c_mpf, c_f, c_stab_freq_fn, c_stab_freq_mn, 
 	}
 
 	Plotly.newPlot('graph_conv_stab', data, layout, modebar_config);
+}
+
+function draw_3d_diagram(d3_freq, d3_damp) {
+	const data = [{
+		x: d3_freq,
+		y: d3_damp,
+		autobinx: false,
+		xbins: {
+			start: 0,
+			end: 2.5,
+			size: 0.1
+		},
+		autobiny: false,
+		ybins: {
+			start: 0,
+			end: 50,
+			size: 1
+		},
+		type: 'histogram2d'
+	}];
+
+	const layout = {
+		title: 'Stabilization histogram',
+		xaxis: {
+			title: 'Frequency [Hz]'
+		},
+		yaxis: {
+			title: 'Damping ratio [%]'
+		}
+	}
+
+	Plotly.newPlot('graph_3d_stab', data, layout);
 }
 
 // DOM Manipulation functions
