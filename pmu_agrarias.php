@@ -151,6 +151,7 @@
       <div class="row d-none" id="graph1" style="width: 1140px;"></div>
       <div class="row d-none" id="graph_processed" style="width: 1140px;"></div>
       <div class="row d-none" id="graph2" style="width: 1140px;"></div>
+      <div class="row d-none" id="graph_conv_stab" style="width: 1140px;"></div>
 
       <!-- Tempo de atualização -->
       <div class="row justify-content-center" id="last-update" style="display:none">

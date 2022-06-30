@@ -64,7 +64,19 @@ function startup() {
 
 			// Preprocessed signal graph logic
 			if (res.freq_process) {
+				// Plot de sinal pré-processado
 				draw_graph_processed(res.date, res.freq_process);
+				// Plot de diagrama de estabilização convencional
+				draw_stabilization_diagram(
+					res.c_mpf, 
+					res.c_f, 
+					res.c_stab_freq_fn, 
+					res.c_stab_freq_mn, 
+					res.c_stab_fn,
+					res.c_stab_mn,
+					res.c_not_stab_fn,
+					res.c_not_stab_mn
+				);
 				toggleViews('working-complete');
 			} else {
 				toggleViews('working');
@@ -135,6 +147,7 @@ function toggleViews(status) {
 			show('graph1');
 			show('graph2');
 			hide('graph_processed');
+			hide('graph_conv_stab');
 			hide('loading');
 			show('last-update');
 			show('pmu-location');
@@ -145,6 +158,7 @@ function toggleViews(status) {
 			show('graph1');
 			show('graph2');
 			show('graph_processed');
+			show('graph_conv_stab');
 			hide('loading');
 			show('last-update');
 			show('pmu-location');
@@ -155,6 +169,7 @@ function toggleViews(status) {
 			hide('graph1');
 			hide('graph2');
 			hide('graph_processed');
+			hide('graph_conv_stab');
 			hide('loading');
 			hide('last-update');
 			show('pmu-location');
@@ -165,6 +180,7 @@ function toggleViews(status) {
 			hide('graph1');
 			hide('graph2');
 			hide('graph_processed');
+			hide('graph_conv_stab');
 			show('loading');
 			hide('last-update');
 			hide('pmu-location');
@@ -243,6 +259,75 @@ function draw_graph_processed(data_x, data_y) {
 	})
 
 	Plotly.newPlot('graph_processed', trace, layout, modebar_config);
+}
+
+function draw_stabilization_diagram(c_mpf, c_f, c_stab_freq_fn, c_stab_freq_mn, c_stab_fn, c_stab_mn, c_not_stab_fn, c_not_stab_mn) {
+	
+	// Modos estáveis em frequência 
+	const trace1 = {
+		x: c_stab_freq_fn,
+		y: c_stab_freq_mn,
+		type: 'scatter',
+		mode: 'markers',
+		name: "Frequency stable modes",
+	};
+
+	// Modos estáveis em frequência e amortecimento
+	const trace2 = {
+		x: c_stab_fn,
+		y: c_stab_mn,
+		type: 'scatter',
+		mode: 'markers',
+		name: "Frequency and damping stable modes",
+	};
+
+	// Modos não estáveis
+	const trace3 = {
+		x: c_not_stab_fn,
+		y: c_not_stab_mn,
+		type: 'scatter',
+		mode: 'markers',
+		name: 'Not stable modes',
+	};
+
+	// Função de resposta em frequência
+	const trace4 = {
+		x: c_f,
+		y: c_mpf,
+		type: 'scatter',
+		name: 'Frequency response function',
+		yaxis: 'y2'
+	};
+
+	const data = [trace1, trace2, trace3, trace4];
+
+	const layout = {
+		title: "Conventional stabilization diagram",
+		xaxis: {
+			title: 'Frequency [Hz]',
+			range: [c_f[0], c_f[c_f.length - 1]]
+		},
+		yaxis: {
+			title: "Modes",
+			range: [0, order + 0.5]
+		},
+		yaxis2: {
+			title: "Magnitude",
+			overlaying: "y",
+			side: "right",
+			type: "log",
+			autorange: true
+		},
+		showlegend: true,
+		legend: {
+			orientation: 'h',
+			xanchor: 'center',
+			y: 1.1,
+			x: 0.5
+		},
+	}
+
+	Plotly.newPlot('graph_conv_stab', data, layout, modebar_config);
 }
 
 // DOM Manipulation functions
