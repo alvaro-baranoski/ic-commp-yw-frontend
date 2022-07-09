@@ -58,9 +58,17 @@
           <!-- Time window -->
           <div class="col">
             <label for="time_window_select">Time window in minutes</label>
-            <input type="number" class="form-control" id="time_window_select" aria-describedby="time_window" placeholder="60" min="1" max="60" step="1">
+            <input 
+              type="number" 
+              class="form-control" 
+              id="time_window_select" 
+              aria-describedby="time_window" 
+              placeholder="20" 
+              min="1" 
+              max="60" 
+              step="1">
             <small id="time_window" class="form-text text-muted">
-              Highest time window available is 60 minutes.
+              Size of time window to be processed.
             </small>
           </div>
 
@@ -69,9 +77,17 @@
             <label for="sample_frequency_select">
               Sample frequency in hertz
             </label>
-            <input type="number" class="form-control" id="sample_frequency_select" aria-describedby="time_window" placeholder="15" min="15" max="20" step="1">
+            <input 
+              type="number" 
+              class="form-control" 
+              id="sample_frequency_select" 
+              aria-describedby="time_window" 
+              placeholder="100" 
+              min="60" 
+              max="120" 
+              step="10">
             <small id="freq_select" class="form-text text-muted">
-              Sample frequency between 15 and 30 Hz.
+              Sample frequency that data will be acquired.
             </small>
           </div>
 
@@ -80,9 +96,17 @@
             <label for="order_select">
               Model order
             </label>
-            <input type="number" class="form-control" id="order_select" aria-describedby="time_window" placeholder="20" min="10" max="30" step="1">
+            <input 
+              type="number" 
+              class="form-control" 
+              id="order_select" 
+              aria-describedby="time_window" 
+              placeholder="20" 
+              min="10" 
+              max="30" 
+              step="1">
             <small id="ord_select" class="form-text text-muted">
-              Model order between 10 and 30.
+              ARMA model initial order.
             </small>
           </div>
         </div>
@@ -98,11 +122,11 @@
               type="number" 
               class="form-control" 
               id="filter_lower_select" 
-              placeholder="0.3" 
-              min="0"  
-              step="0.1">
+              placeholder="0.04" 
+              min="0.01"  
+              step="0.3">
             <small class="form-text text-muted">
-              Default value is 0.3 Hz.
+              FIR lowpass filter frequency cutoff.
             </small>
           </div>
 
@@ -116,11 +140,9 @@
               class="form-control" 
               id="filter_higher_select" 
               aria-describedby="time_window" 
-              placeholder="7.0" 
-              min="0" 
-              step="0.1">
+              placeholder="4.0">
             <small class="form-text text-muted">
-              Default value is 7.0 Hz.
+              FIR highpass filter frequency cutoff.
             </small>
           </div>
 
@@ -133,9 +155,9 @@
               type="number" 
               class="form-control" 
               id="outliner_select"  
-              placeholder="3.5" 
-              min="0"  
-              step="0.1">
+              placeholder="5" 
+              min="1"  
+              step="1">
             <small class="form-text text-muted">
               Value multiplied by standard deviation to find outliers.
             </small>
