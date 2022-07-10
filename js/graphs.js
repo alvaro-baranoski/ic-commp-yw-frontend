@@ -58,12 +58,26 @@ function startup() {
 			}
 			
 			const res = JSON.parse(response);
-			
-			draw_graph1(res.date, res.freq);
-			draw_graph2(res.modes, res.damp);
 
-			// Preprocessed signal graph logic
-			if (res.freq_process) {
+			// View simplificada
+			if (res.view === "simplificada") {
+				const main_modes = res.main_modes;
+				
+				$('#freq_range').text(`Frequency range: ${main_modes[0].freq_interval[0]} Hz ~ ${main_modes[0].freq_interval[1]} Hz`);
+				$('#damp_range').text(`Damping ratio range: ${main_modes[0].damp_interval[0]}% ~ ${main_modes[0].damp_interval[1]}%`);
+				$('#mode_presence').text(`Mode presence: ${main_modes[0].presence}x`);
+
+				$('#freq_range_2').text(`Frequency range: ${main_modes[1].freq_interval[0]} Hz ~ ${main_modes[1].freq_interval[1]} Hz`);
+				$('#damp_range_2').text(`Damping ratio range: ${main_modes[1].damp_interval[0]}% ~ ${main_modes[1].damp_interval[1]}%`);
+				$('#mode_presence_2').text(`Mode presence: ${main_modes[1].presence}x`);
+
+				toggleViews('working');
+			}
+			else {
+				// View completa
+				draw_graph1(res.date, res.freq);
+				draw_graph2(res.modes, res.damp);
+	
 				// Plot de sinal pré-processado
 				draw_graph_processed(res.date, res.freq_process);
 				// Plot de diagrama de estabilização convencional
@@ -79,10 +93,10 @@ function startup() {
 				);
 				// Plot de diagrama de estabilização 3d
 				draw_3d_diagram(res.d3_freq, res.d3_damp);
+	
 				toggleViews('working-complete');
-			} else {
-				toggleViews('working');
 			}
+
 
 			//Updates time and informs user
 			$("#last-update-time").html(new Date().toLocaleDateString() + " " +
@@ -146,8 +160,9 @@ $('#button_id').on('click', function () {
 function toggleViews(status) {
 	switch (status) {
 		case 'working':
-			show('graph1');
-			show('graph2');
+			show('main_modes_div');
+			hide('graph1');
+			hide('graph2');
 			hide('graph_processed');
 			hide('graph_conv_stab');
 			hide('graph_3d_stab');
@@ -158,6 +173,7 @@ function toggleViews(status) {
 			break;
 
 		case 'working-complete':
+			hide('main_modes_div');
 			show('graph1');
 			show('graph2');
 			show('graph_processed');
@@ -170,6 +186,7 @@ function toggleViews(status) {
 			break;
 
 		case 'unavailable':
+			hide('main_modes_div');
 			hide('graph1');
 			hide('graph2');
 			hide('graph_processed');
@@ -182,6 +199,7 @@ function toggleViews(status) {
 			break;
 
 		case 'loading':
+			hide('main_modes_div');
 			hide('graph1');
 			hide('graph2');
 			hide('graph_processed');

@@ -169,6 +169,23 @@
         Update
       </button>
 
+      <div class="container d-none p-0 mt-3" id="main_modes_div">
+        <h5> Main electromechanical modes calculated </h5>
+        <div class="row mt-2">
+          <div class="col-6">
+            <p id="freq_range"></p>
+            <p id="damp_range"></p>
+            <p id="mode_presence"></p>
+          </div>
+  
+          <div class="col-6">
+            <p id="freq_range_2"></p>
+            <p id="damp_range_2"></p>
+            <p id="mode_presence_2"></p>
+          </div>
+        </div>
+      </div>
+
       <!-- Gráficos -->
       <div class="row d-none" id="graph1" style="width: 1140px;"></div>
       <div class="row d-none" id="graph_processed" style="width: 1140px;"></div>
