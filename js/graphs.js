@@ -121,7 +121,7 @@ $('#dashboard-select-div').on('click', () => {
 	// Simplified dashboard
 	else {
 		form.classList.add('d-none');
-		view = 'simplified';
+		view = 'simplificada';
 	}
 })
 
