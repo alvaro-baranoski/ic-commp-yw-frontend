@@ -171,19 +171,31 @@
 
       <div class="container d-none p-0 mt-3" id="main_modes_div">
         <h5> Main electromechanical modes calculated </h5>
-        <div class="row mt-2">
-          <div class="col-6">
-            <p id="freq_range"></p>
-            <p id="damp_range"></p>
-            <p id="mode_presence"></p>
-          </div>
-  
-          <div class="col-6">
-            <p id="freq_range_2"></p>
-            <p id="damp_range_2"></p>
-            <p id="mode_presence_2"></p>
-          </div>
-        </div>
+        
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Frequency range [Hz]</th>
+              <th scope="col">Damping ratio range [%]</th>
+              <th scope="col">Mode incidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td id="freq_range"></td>
+              <td id="damp_range"></td>
+              <td id="mode_presence"></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td id="freq_range_2"></td>
+              <td id="damp_range_2"></td>
+              <td id="mode_presence_2"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- Gráficos -->

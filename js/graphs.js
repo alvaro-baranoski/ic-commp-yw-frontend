@@ -127,13 +127,13 @@ $('#button_id').on('click', function () {
 
 function dashboard() {
 	const main_modes = res.main_modes;
-	$('#freq_range').text(`Frequency range: ${main_modes[0].freq_interval[0]} Hz ~ ${main_modes[0].freq_interval[1]} Hz`);
-	$('#damp_range').text(`Damping ratio range: ${main_modes[0].damp_interval[0]}% ~ ${main_modes[0].damp_interval[1]}%`);
-	$('#mode_presence').text(`Mode presence: ${main_modes[0].presence}x`);
+	$('#freq_range').text(`${main_modes[0].freq_interval[0]} Hz ~ ${main_modes[0].freq_interval[1]} Hz`);
+	$('#damp_range').text(`${main_modes[0].damp_interval[0]}% ~ ${main_modes[0].damp_interval[1]}%`);
+	$('#mode_presence').text(`${main_modes[0].presence}`);
 	
-	$('#freq_range_2').text(`Frequency range: ${main_modes[1].freq_interval[0]} Hz ~ ${main_modes[1].freq_interval[1]} Hz`);
-	$('#damp_range_2').text(`Damping ratio range: ${main_modes[1].damp_interval[0]}% ~ ${main_modes[1].damp_interval[1]}%`);
-	$('#mode_presence_2').text(`Mode presence: ${main_modes[1].presence}x`);
+	$('#freq_range_2').text(`${main_modes[1].freq_interval[0]} Hz ~ ${main_modes[1].freq_interval[1]} Hz`);
+	$('#damp_range_2').text(`${main_modes[1].damp_interval[0]}% ~ ${main_modes[1].damp_interval[1]}%`);
+	$('#mode_presence_2').text(`${main_modes[1].presence}`);
 
 	// View completa
 	draw_graph1(res.date, res.freq);
