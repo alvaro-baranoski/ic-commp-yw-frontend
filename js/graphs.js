@@ -16,6 +16,8 @@ let filterHigher = 4.0;
 let outlierConstant = 5;
 let view = 'simplificada';
 
+let res;
+
 toggleViews('loading');
 
 window.addEventListener('load', () => {
@@ -57,47 +59,12 @@ function startup() {
 				return;
 			}
 			
-			const res = JSON.parse(response);
+			res = JSON.parse(response);
 
-			// View simplificada
-			if (res.view === "simplificada") {
-				const main_modes = res.main_modes;
-				
-				$('#freq_range').text(`Frequency range: ${main_modes[0].freq_interval[0]} Hz ~ ${main_modes[0].freq_interval[1]} Hz`);
-				$('#damp_range').text(`Damping ratio range: ${main_modes[0].damp_interval[0]}% ~ ${main_modes[0].damp_interval[1]}%`);
-				$('#mode_presence').text(`Mode presence: ${main_modes[0].presence}x`);
+			dashboard();
 
-				$('#freq_range_2').text(`Frequency range: ${main_modes[1].freq_interval[0]} Hz ~ ${main_modes[1].freq_interval[1]} Hz`);
-				$('#damp_range_2').text(`Damping ratio range: ${main_modes[1].damp_interval[0]}% ~ ${main_modes[1].damp_interval[1]}%`);
-				$('#mode_presence_2').text(`Mode presence: ${main_modes[1].presence}x`);
-
-				toggleViews('working');
-			}
-			else {
-				// View completa
-				draw_graph1(res.date, res.freq);
-				draw_graph2(res.modes, res.damp);
-	
-				// Plot de sinal pré-processado
-				draw_graph_processed(res.date, res.freq_process);
-				// Plot de diagrama de estabilização convencional
-				draw_stabilization_diagram(
-					res.c_mpf, 
-					res.c_f, 
-					res.c_stab_freq_fn, 
-					res.c_stab_freq_mn, 
-					res.c_stab_fn,
-					res.c_stab_mn,
-					res.c_not_stab_fn,
-					res.c_not_stab_mn
-				);
-				// Plot de diagrama de estabilização 3d
-				draw_3d_diagram(res.d3_freq, res.d3_damp);
-	
-				toggleViews('working-complete');
-			}
-
-
+			res.view === "simplificada" ? toggleViews('working') : toggleViews('working-complete');
+			
 			//Updates time and informs user
 			$("#last-update-time").html(new Date().toLocaleDateString() + " " +
 				new Date().toLocaleTimeString('en-GB', {
@@ -117,11 +84,13 @@ $('#dashboard-select-div').on('click', () => {
 	if (checkbox.checked) {
 		form.classList.remove('d-none');
 		view = 'complete';
+		toggleViews('working-complete');
 	} 
 	// Simplified dashboard
 	else {
 		form.classList.add('d-none');
 		view = 'simplificada';
+		toggleViews('working');
 	}
 })
 
@@ -155,6 +124,37 @@ $('#button_id').on('click', function () {
 	startup();
 	
 });
+
+function dashboard() {
+	const main_modes = res.main_modes;
+	$('#freq_range').text(`Frequency range: ${main_modes[0].freq_interval[0]} Hz ~ ${main_modes[0].freq_interval[1]} Hz`);
+	$('#damp_range').text(`Damping ratio range: ${main_modes[0].damp_interval[0]}% ~ ${main_modes[0].damp_interval[1]}%`);
+	$('#mode_presence').text(`Mode presence: ${main_modes[0].presence}x`);
+	
+	$('#freq_range_2').text(`Frequency range: ${main_modes[1].freq_interval[0]} Hz ~ ${main_modes[1].freq_interval[1]} Hz`);
+	$('#damp_range_2').text(`Damping ratio range: ${main_modes[1].damp_interval[0]}% ~ ${main_modes[1].damp_interval[1]}%`);
+	$('#mode_presence_2').text(`Mode presence: ${main_modes[1].presence}x`);
+
+	// View completa
+	draw_graph1(res.date, res.freq);
+	draw_graph2(res.modes, res.damp);
+	
+	// Plot de sinal pré-processado
+	draw_graph_processed(res.date, res.freq_process);
+	// Plot de diagrama de estabilização convencional
+	draw_stabilization_diagram(
+		res.c_mpf, 
+		res.c_f, 
+		res.c_stab_freq_fn, 
+		res.c_stab_freq_mn, 
+		res.c_stab_fn,
+		res.c_stab_mn,
+		res.c_not_stab_fn,
+		res.c_not_stab_mn
+	);
+	// Plot de diagrama de estabilização 3d
+	draw_3d_diagram(res.d3_freq, res.d3_damp);
+}
 
 // Utility function for switching between page views
 function toggleViews(status) {
