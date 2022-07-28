@@ -18,20 +18,12 @@
 
 </head>
 
-<style type="text/css">
-  footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-</style>
-
 <body id="page-top">
 
   <!-- Navigation -->
   <?php include('menu.php'); ?>
 
-  <section id="about">
+  <section class="pb-0" id="about">
     <div class="container">
       <h2>Choose a PMU</h2>
       <select class="custom-select" id="select-pmu" onchange="location = this.value;">
@@ -43,13 +35,44 @@
         <option value="about.php" disabled>UsinaFV</option>
         <option value="about.php" disabled>Copel</option>
       </select>
-
       
       <h5 class="mt-2">Other methods available: </h5>
       <a class="btn btn-secondary" href="https://sirius.eletrica.ufpr.br/welch/index.php" target="_blank" role="button">Welch</a>
       
       <div id="number-access-div" class="d-none mt-2">
         <p>This website has received <span id="number-access"></span> visitors so far!</p>
+      </div>
+
+      <div class="container d-none pt-3 p-0 mt-3" id="main_modes_div">
+        <h3> Interconnected grid's electromechanical modes of Curitiba city </h3>
+        
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Frequency range [Hz]</th>
+              <th scope="col">Damping ratio range [%]</th>
+              <th scope="col">Mode incidence</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tempo de atualização -->
+      <div class="p-5 row justify-content-center d-none" id="last-update">
+        <h5>Last update at <span id="last-update-time"></span></h5>
+      </div>
+
+      <!-- Logo de loading -->
+      <div id="loading" style="text-align: center;">
+        <img src="svg/loading-big.gif" width="400px">
+        <p align="center">
+          <h1>
+            <b>LOADING...</b>
+          </h1>
+        </p>
       </div>
   </section>
 

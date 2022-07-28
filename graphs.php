@@ -5,16 +5,16 @@ ini_set('memory_limit', '512M');
 
 if (isset($_GET['action']) && !empty($_GET['action'])) {
 	$action = $_GET['action'];
-	$pmu = (isset($_GET['pmu']) && !empty($_GET['pmu']) ? $_GET['pmu'] : "");
-	$time_window = (isset($_GET['time_w']) && !empty($_GET['time_w']) ? $_GET['time_w'] : "");
-	$sample_frequency = (isset($_GET['sample_freq']) && !empty($_GET['sample_freq']) ? $_GET['sample_freq'] : "");
-	$order = (isset($_GET['order']) && !empty($_GET['order']) ? $_GET['order'] : "");
-	$filter_lower = $_GET['filter_lower'];
-	$filter_higher = $_GET['filter_higher'];
-	$outlier_constant = $_GET['outlier_constant'];
-	$view = $_GET['view'];
 	switch ($action) {
 		case 'startup':
+			$pmu = (isset($_GET['pmu']) && !empty($_GET['pmu']) ? $_GET['pmu'] : "");
+			$time_window = (isset($_GET['time_w']) && !empty($_GET['time_w']) ? $_GET['time_w'] : "");
+			$sample_frequency = (isset($_GET['sample_freq']) && !empty($_GET['sample_freq']) ? $_GET['sample_freq'] : "");
+			$order = (isset($_GET['order']) && !empty($_GET['order']) ? $_GET['order'] : "");
+			$filter_lower = $_GET['filter_lower'];
+			$filter_higher = $_GET['filter_higher'];
+			$outlier_constant = $_GET['outlier_constant'];
+			$view = $_GET['view'];
 			startup(
 				$pmu, 
 				$time_window, 
@@ -26,6 +26,8 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 				$view
 			);
 			break;
+		case 'cluster':
+			cluster();
 	}
 }
 
@@ -72,4 +74,16 @@ function startup($pmu, $time_w, $sample_freq, $order, $filter_lower, $filter_hig
 
 	// print_r("finished");
 	// print_r("\n");
+}
+
+
+function cluster()
+{
+	// Execute the python script with the JSON data
+	$results = shell_exec("/opt/ic-commp/bin/python3 /opt/yulewalker/main/cluster.py");
+	// $results = shell_exec("D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\\venv\Scripts\python.exe D:\Alvaro\Faculdade\TCC\Source\ic-commp-yw-backend\main\cluster.py");
+
+	$encoded_results = json_encode($results);
+
+	echo $encoded_results;
 }
