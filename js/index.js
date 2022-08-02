@@ -76,18 +76,21 @@ function toggleViews(status) {
 			show('main_modes_div');
             show('last-update');
             hide('loading');
+			hide('pmu-error');
 			break;
 
 		case 'unavailable':
 			hide('main_modes_div');
             hide('last-update');
-            show('loading');
+            hide('loading');
+			show('pmu-error');
 			break;
 
 		case 'loading':
 			hide('main_modes_div');
             hide('last-update');
             show('loading');
+			hide('pmu-error');
 			break;
 	}
 }

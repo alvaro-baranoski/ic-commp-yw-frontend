@@ -74,6 +74,20 @@
           </h1>
         </p>
       </div>
+
+      <!-- Mensagem de erro -->
+      <div id="pmu-error" class="container pb-5 pt-5 w-75 d-none">
+        <div class="row d-flex">
+            <div class="col">
+              <img src="svg/switch-off.svg" width="400px">
+            </div>
+            <div class="col" style="margin: auto">
+              <p>
+              <h3><b>We're very sorry, but not all PMUs are currently available.</b></h3>
+              </p>
+            </div>
+        </div>
+      </div>
   </section>
 
   <?php include('footer.php'); ?>
