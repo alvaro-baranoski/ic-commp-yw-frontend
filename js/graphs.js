@@ -370,7 +370,8 @@ function draw_3d_diagram(d3_freq, d3_damp) {
 			end: 50,
 			size: 1
 		},
-		type: 'histogram2d'
+		type: 'histogram2d',
+		colorscale: 'Hot',
 	}];
 
 	const layout = {
