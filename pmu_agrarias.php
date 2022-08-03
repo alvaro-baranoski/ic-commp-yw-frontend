@@ -126,7 +126,7 @@
               min="0.01"  
               step="0.3">
             <small class="form-text text-muted">
-              FIR lowpass filter frequency cutoff.
+              FIR highpass filter frequency cutoff.
             </small>
           </div>
 
@@ -142,7 +142,7 @@
               aria-describedby="time_window" 
               placeholder="4.0">
             <small class="form-text text-muted">
-              FIR highpass filter frequency cutoff.
+              FIR lowpass filter frequency cutoff.
             </small>
           </div>
 
