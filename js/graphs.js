@@ -11,8 +11,8 @@ const modebar_config = {
 let time_window = 20;
 let sample_frequency = 100;
 let order = 20;
-let filterLower = 0.04;
-let filterHigher = 4.0;
+let filterLower = 0.3;
+let filterHigher = 7.0;
 let outlierConstant = 5;
 let view = 'simplificada';
 
@@ -83,6 +83,7 @@ $('#dashboard-select-div').on('click', () => {
 	// Complete dashboard
 	if (checkbox.checked) {
 		form.classList.remove('d-none');
+		setPlaceholder();
 		view = 'complete';
 		toggleViews('working-complete');
 	} 
@@ -402,4 +403,24 @@ function hide(elementId) {
 	if (!element.classList.contains('d-none')) {
 		element.classList.add('d-none');
 	}
+}
+
+function setPlaceholder() {
+	// Checks time window value
+	$("#time_window_select").attr("placeholder", time_window);
+
+	// Checks sample frequency value
+	$("#sample_frequency_select").attr("placeholder", sample_frequency);
+
+	// Checks welch segment window
+	$("#order_select").attr("placeholder", order);
+
+	// filter lower frequency
+	$("#filter_lower_select").attr("placeholder", filterLower);
+
+	// filter higher frequency
+	$("#filter_higher_select").attr("placeholder", filterHigher);
+
+	// filter lower frequency
+	$("#outliner_select").attr("placeholder", outlierConstant);
 }
