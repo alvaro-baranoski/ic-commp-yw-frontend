@@ -29,6 +29,7 @@ function cluster() {
 			
 			res = JSON.parse(response);
             
+			resetView();
             updateView(res["main_modes"]);
 
             toggleViews('working');
@@ -60,6 +61,11 @@ function updateView(res) {
         tbody.innerHTML = tbody.innerHTML + row;
         count += 1;
     });
+}
+
+function resetView() {
+	const tbody = document.querySelector("tbody");
+	tbody.innerHTML = "";
 }
 
 function cb(response) {
