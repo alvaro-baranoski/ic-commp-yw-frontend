@@ -16,6 +16,9 @@
   <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
 
+  <!-- Bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
 </head>
@@ -174,6 +177,7 @@
               <th scope="col">Frequency range [Hz]</th>
               <th scope="col">Damping ratio range [%]</th>
               <th scope="col">Mode incidence</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -182,12 +186,14 @@
               <td id="freq_range"></td>
               <td id="damp_range"></td>
               <td id="mode_presence"></td>
+              <td id="crossvalidation_check"></td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td id="freq_range_2"></td>
               <td id="damp_range_2"></td>
               <td id="mode_presence_2"></td>
+              <td id="crossvalidation_check_2"></td>
             </tr>
           </tbody>
         </table>

@@ -137,13 +137,32 @@ $('#button_id').on('click', function () {
 
 function dashboard() {
 	const main_modes = res.main_modes;
+	let crossvalidationIcon;
+
 	$('#freq_range').text(`${main_modes[0].freq_interval[0]} Hz ~ ${main_modes[0].freq_interval[1]} Hz`);
 	$('#damp_range').text(`${main_modes[0].damp_interval[0]}% ~ ${main_modes[0].damp_interval[1]}%`);
 	$('#mode_presence').text(`${main_modes[0].presence}`);
+
+	if (main_modes[0].crossvalidation === true) {
+		crossvalidationIcon = `<i class="bi bi-check-circle"></i>`;
+	} else {
+		crossvalidationIcon = `<i class="bi bi-exclamation-circle"></i>`;
+	}
+
+	$('#crossvalidation_check').html(crossvalidationIcon);
 	
 	$('#freq_range_2').text(`${main_modes[1].freq_interval[0]} Hz ~ ${main_modes[1].freq_interval[1]} Hz`);
 	$('#damp_range_2').text(`${main_modes[1].damp_interval[0]}% ~ ${main_modes[1].damp_interval[1]}%`);
 	$('#mode_presence_2').text(`${main_modes[1].presence}`);
+
+	
+	if (main_modes[1].crossvalidation === true) {
+		crossvalidationIcon = `<i class="bi bi-check-circle"></i>`;
+	} else {
+		crossvalidationIcon = `<i class="bi bi-exclamation-circle"></i>`;
+	}
+
+	$('#crossvalidation_check_2').html(crossvalidationIcon);
 
 	// View completa
 	draw_graph1(res.date, res.freq);
