@@ -138,6 +138,7 @@ $('#button_id').on('click', function () {
 function dashboard() {
 	const main_modes = res.main_modes;
 	let crossvalidationIcon;
+	let tooltipText;
 
 	$('#freq_range').text(`${main_modes[0].freq_interval[0]} Hz ~ ${main_modes[0].freq_interval[1]} Hz`);
 	$('#damp_range').text(`${main_modes[0].damp_interval[0]}% ~ ${main_modes[0].damp_interval[1]}%`);
@@ -145,11 +146,15 @@ function dashboard() {
 
 	if (main_modes[0].crossvalidation === true) {
 		crossvalidationIcon = `<i class="bi bi-check-circle"></i>`;
+		tooltipText = 'Este modo passou no processo de validação cruzada e está de acordo com os resultados apresentados pelo método de Welch';
 	} else {
 		crossvalidationIcon = `<i class="bi bi-exclamation-circle"></i>`;
+		tooltipText = 'Este modo passou no processo de validação cruzada e não está de acordo com os resultados apresentados pelo método de Welch';
 	}
 
 	$('#crossvalidation_check').html(crossvalidationIcon);
+	$('#crossvalidation_check').attr('title', tooltipText);
+	$('#crossvalidation_check').tooltip();
 	
 	$('#freq_range_2').text(`${main_modes[1].freq_interval[0]} Hz ~ ${main_modes[1].freq_interval[1]} Hz`);
 	$('#damp_range_2').text(`${main_modes[1].damp_interval[0]}% ~ ${main_modes[1].damp_interval[1]}%`);
@@ -158,11 +163,15 @@ function dashboard() {
 	
 	if (main_modes[1].crossvalidation === true) {
 		crossvalidationIcon = `<i class="bi bi-check-circle"></i>`;
+		tooltipText = 'Este modo passou no processo de validação cruzada e está de acordo com os resultados apresentados pelo método de Welch';
 	} else {
 		crossvalidationIcon = `<i class="bi bi-exclamation-circle"></i>`;
+		tooltipText = 'Este modo passou no processo de validação cruzada e não está de acordo com os resultados apresentados pelo método de Welch';
 	}
 
 	$('#crossvalidation_check_2').html(crossvalidationIcon);
+	$('#crossvalidation_check_2').attr('title', tooltipText);
+	$('#crossvalidation_check_2').tooltip();
 
 	// View completa
 	draw_graph1(res.date, res.freq);

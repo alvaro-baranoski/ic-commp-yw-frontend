@@ -185,14 +185,14 @@
               <td id="freq_range"></td>
               <td id="damp_range"></td>
               <td id="mode_presence"></td>
-              <td id="crossvalidation_check"></td>
+              <td id="crossvalidation_check" class="text-center" data-toggle="tooltip" data-placement="top"></td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td id="freq_range_2"></td>
               <td id="damp_range_2"></td>
               <td id="mode_presence_2"></td>
-              <td id="crossvalidation_check_2"></td>
+              <td id="crossvalidation_check_2" class="text-center" data-toggle="tooltip" data-placement="top"></td>
             </tr>
           </tbody>
         </table>
@@ -241,6 +241,8 @@
   </div>
 
   <?php include('footer.php'); ?>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
