@@ -28,7 +28,7 @@ function cluster() {
 			}
 			
 			res = JSON.parse(response);
-            
+
 			resetView();
             updateView(res["main_modes"]);
 
@@ -58,8 +58,9 @@ function updateView(res) {
             <td>${mode["presence"]}</td>
         </tr>
         `;
-        tbody.innerHTML = tbody.innerHTML + row;
         count += 1;
+		if (!(count > 3))
+			tbody.innerHTML = tbody.innerHTML + row;
     });
 }
 
